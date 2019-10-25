@@ -11,17 +11,16 @@
 
             <!-- Blog Entries Column -->
 
-
-
-
-
             <div class="col-md-8">
 <?php
-      $query = "SELECT * FROM posts WHERE post_status = 'Published'";
-      $select_all_posts_query = mysqli_query($connection, $query);
+if(isset($_GET['category'])){
+$post_category_id = $_GET['category'];
 
-      $number_of_results = mysqli_num_rows($select_all_posts_query);
-      if($number_of_results == 0) { echo "<h1 class='text-center'>No posts to display</h1>"; }
+}
+
+
+      $query = "SELECT * FROM posts WHERE post_category_id = $post_category_id";
+      $select_all_posts_query = mysqli_query($connection, $query);
 
 while($row = mysqli_fetch_assoc($select_all_posts_query)){
 
@@ -31,10 +30,6 @@ while($row = mysqli_fetch_assoc($select_all_posts_query)){
      $post_date = $row['post_date'];
      $post_image = $row['post_image'];
      $post_content = substr($row['post_content'],0,400);
-     $post_status = $row['post_status'];
-
-
-
 ?>
 
  <h1 class="page-header">

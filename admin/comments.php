@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Welcome to Posts
+                            Welcome to Comments
                             <small> Author</small>
                         </h1>
 
@@ -49,13 +49,13 @@ echo 'Editing post ID ';
 include "includes/edit_post.php";
 break;
 
-case 'dele';
+case 'delete_';
 echo "nice";
 break;
 
 default:
 
-include "includes/include_all_posts.php";
+include "includes/view_all_comments.php";
 
 break;
 }

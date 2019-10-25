@@ -78,8 +78,8 @@ $cat_title = $row['cat_title'];
     </table>
 
 <?php
-//// CALL DELETE CAR FUNCTION
+//// CALL DELETE POST FUNCTION
 
-if(isset($_GET['delete'])){ deleteCar(); }
+if(isset($_GET['delete'])){ deletePost(); }
 
 ?>

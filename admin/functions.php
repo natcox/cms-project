@@ -194,5 +194,112 @@ $comment_post_id = $_GET['p_id'];
    header("location: comments.php");
 }
 
+function deleteUser(){
+    global $connection;
+    $the_user_id = $_GET['delete'];
+    $query = "DELETE FROM users WHERE user_id = {$the_user_id} ";
+    $delete_query = mysqli_query($connection,$query);
+    if(!$delete_query){ echo "Error";}
+   header("location: users.php");
+
+}
+
+function unapproveUser(){
+    global $connection;
+    $the_user_id = $_GET['unapprove'];
+    $query = "UPDATE users SET user_status='Unapproved' WHERE user_id = {$the_user_id}";
+    $unapprove_user_query = mysqli_query($connection,$query);
+    if(!$unapprove_user_query){ echo "Error";}
+
+   header("location: users.php");
+}
+
+function approveUser(){
+    global $connection;
+    $the_user_id = $_GET['approve'];
+    $query = "UPDATE users SET user_status='Approved' WHERE user_id = {$the_user_id}";
+    $approve_user_query = mysqli_query($connection,$query);
+    if(!$approve_user_query){ echo "Error";}
+
+   header("location: users.php");
+}
+
+function makeAdmin(){
+    global $connection;
+    $the_user_id = $_GET['make_admin'];
+    $query = "UPDATE users SET user_role='Admin' WHERE user_id = {$the_user_id}";
+    $make_admin_query = mysqli_query($connection,$query);
+    if(!$make_admin_query){ echo "Error";}
+
+   header("location: users.php");
+}
+
+function makeSubscriber(){
+    global $connection;
+    $the_user_id = $_GET['make_subscriber'];
+    $query = "UPDATE users SET user_role='Subscriber' WHERE user_id = {$the_user_id}";
+    $make_subscriber_query = mysqli_query($connection,$query);
+    if(!$make_subscriber_query){ echo "Error";}
+
+   header("location: users.php");
+}
+
+
+///// UPDATE USER FUNCTION
+
+function updateUser(){
+      global $connection;
+$the_user_id = $_GET['user_id'];
+
+$user_firstname = $_POST['user_firstname'];
+$user_lastname = $_POST['user_lastname'];
+$user_role = $_POST['user_role'];
+$user_email = $_POST['user_email'];
+$user_image = $_FILES['image']['name'];
+$user_image_temp = $_FILES['image']['tmp_name'];
+$user_username = $_POST['user_username'];
+$user_password = $_POST['user_password'];
+
+move_uploaded_file($user_image_temp, "../images/$user_image");
+
+if(empty($user_image)) {
+
+$query = "SELECT * FROM users WHERE user_id = $the_user_id ";
+
+$select_image = mysqli_query($connection, $query);
+while($row = mysqli_fetch_array($select_image)){
+  $user_image = $row['user_image'];
+}
+}
+  $query = "UPDATE users SET ";
+  $query .= "user_firstname = '{$user_firstname}', ";
+  $query .= "user_lastname = '{$user_lastname}', ";
+  $query .= "user_role = '{$user_role}', ";
+  $query .= "user_email = '{$user_email}', ";
+  $query .= "user_image = '{$user_image}', ";
+  $query .= "user_username = '{$user_username}', ";
+  $query .= "user_password = '{$user_password}' ";
+  $query .= "WHERE user_id = '{$the_user_id}' ";
+
+$update_user = mysqli_query($connection,$query);
+
+  confirm($update_user);
+  if($update_user){
+?>
+<script type="text/javascript">
+window.alert("User updated");
+</script>
+<?php
+  }
+  header("Location: users.php?message=1");
+}
+
+///// 'USER EDITED' POP UP JAVASCRIPT MESSAGE
+function updatedMessage(){
+  echo "<SCRIPT type='text/javascript'>
+  alert('User updated');
+  </SCRIPT>";
+}
+
 
 ?>

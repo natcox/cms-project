@@ -15,7 +15,7 @@ $post_image_temp = $_FILES['image']['tmp_name'];
 $post_tags = $_POST['post_tags'];
 $post_content = $_POST['post_content'];
 $post_date = date('d-m-y');
- // comment count removed as this is automatically updated 
+ // comment count removed as this is automatically updated
 
 
 move_uploaded_file($post_image_temp, "../images/$post_image");
@@ -85,7 +85,7 @@ confirm($add_post_query);
 </div>
 
 <div class="form-group">
-    <label for="post_tags">Post Tags</label>
+    <!-- <label for="post_tags">Publish</label> -->
     <input class="btn btn-primary" type="submit" class="form-control" name="create_post" value="Publish">
 </div>
 

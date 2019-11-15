@@ -10,7 +10,7 @@
         <!-- Navigation -->
 <?php include "includes/admin_navigation.php"; ?>
             <!-- /.navbar-collapse -->
-       
+
 
         <div id="page-wrapper">
 
@@ -21,9 +21,9 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Welcome to admin
-                            <small>Author</small>
+                            <small><?php echo $_SESSION['username'];?></small>
                         </h1>
-                
+
                     </div>
                 </div>
                 <!-- /.row -->
@@ -34,4 +34,3 @@
         </div>
         <!-- /#page-wrapper -->
 <?php include "includes/admin_footer.php"; ?>
-

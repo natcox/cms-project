@@ -301,5 +301,50 @@ function updatedMessage(){
   </SCRIPT>";
 }
 
+///// UPDATE Profile FUNCTION
+
+function updateProfile(){
+      global $connection;
+$the_user_id = $_POST['user_id'];
+
+$user_firstname = $_POST['user_firstname'];
+$user_lastname = $_POST['user_lastname'];
+$user_role = $_POST['user_role'];
+$user_email = $_POST['user_email'];
+$user_image = $_FILES['image']['name'];
+$user_image_temp = $_FILES['image']['tmp_name'];
+$user_username = $_POST['user_username'];
+$user_password = $_POST['user_password'];
+
+move_uploaded_file($user_image_temp, "../images/$user_image");
+
+if(empty($user_image)) {
+
+$query = "SELECT * FROM users WHERE user_id = $the_user_id ";
+
+$select_image = mysqli_query($connection, $query);
+while($row = mysqli_fetch_array($select_image)){
+  $user_image = $row['user_image'];
+}
+}
+  $query = "UPDATE users SET ";
+  $query .= "user_firstname = '{$user_firstname}', ";
+  $query .= "user_lastname = '{$user_lastname}', ";
+  $query .= "user_role = '{$user_role}', ";
+  $query .= "user_email = '{$user_email}', ";
+  $query .= "user_image = '{$user_image}', ";
+  $query .= "user_username = '{$user_username}', ";
+  $query .= "user_password = '{$user_password}' ";
+  $query .= "WHERE user_id = '{$the_user_id}' ";
+
+$update_user = mysqli_query($connection,$query);
+
+  confirm($update_user);
+  if($update_user){
+
+  }
+  header("Location: profile.php");
+}
+
 
 ?>

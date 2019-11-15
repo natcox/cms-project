@@ -105,6 +105,7 @@ $update_post = mysqli_query($connection,$query);
                 $cat_title = $row['cat_title'];
                 ?>
                 <option value="<?php echo $cat_id; ?>"><?php echo $cat_title; ?></option>
+                <
                 <?php
                 }
             ?>

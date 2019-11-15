@@ -23,7 +23,23 @@
                 </div>
 
 
+                <!-- Login -->
+                <div class="well">
+                    <h4>Login</h4>
+                    <form action="includes/login.php" method="post">
+                    <div class="form-group">
+                        <input name="username" type="text" class="form-control" placeholder="enter username">
+                    </div>
+                    <div class="input-group">
+                        <input name="password" type="password" class="form-control" placeholder="enter password">
+                        <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit" name="login">Submit</button>
 
+                        </span>
+                    </div>
+                     </form>
+                    <!-- /.input-group -->
+                </div>
 
 
 
@@ -62,11 +78,11 @@
                         <!-- /.col-lg-6 -->
                     </div>
                     <!-- /.row -->
-                </div>
 
                 <!-- Side Widget Well -->
 
     <?php include "widget.php" ?>
+  </div>
 
 
             </div>

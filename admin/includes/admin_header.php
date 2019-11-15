@@ -1,7 +1,23 @@
-<!-- The below php function ob_start is 'output buffering' important when we use header function later --!>
+<!-- The below php function ob_start is 'output buffering' important when we use header function later -->
 <?php ob_start(); ?>
-<?php include "functions.php"; ?> 
+<?php session_start();?>
+<?php include "functions.php"; ?>
 <?php include "../includes/db.php"; ?>
+<?php
+
+if(isset($_SESSION['role'])) {
+
+
+if($_SESSION['role'] !== "Admin"){
+  header ("Location: ../index.php");
+}
+} else {
+  header ("Location: ../index.php");
+
+}
+ ?>
+
+
 <head>
 
     <meta charset="utf-8">

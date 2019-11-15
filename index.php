@@ -1,6 +1,14 @@
 <?php include "includes/header.php"; ?>
 <?php include "includes/db.php"; ?>
 <body>
+
+<?php if(isset($_GET['loginerror'])){   echo "<SCRIPT type='text/javascript'>
+  alert('LOGIN FAILED. Please check username and password.');
+  </SCRIPT>";
+
+} ?>
+
+
 <!-- NAVIGATION <--!></--!>
 <?php include "includes/navigation.php"; ?>
 

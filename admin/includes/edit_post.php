@@ -1,3 +1,4 @@
+
 <?php
 
 if(isset($_GET['p_id'])){
@@ -71,6 +72,8 @@ if(empty($post_image)) {
 $update_post = mysqli_query($connection,$query);
 
     confirm($update_post);
+
+    echo "<p class='bg-success'>Post Updated. <a href='../post.php?p_id={$post_edit_id}'>View your post</a> or <a href='posts.php' >Edit another post</a>";
 }
 
    ?>
@@ -120,9 +123,20 @@ $update_post = mysqli_query($connection,$query);
 </div>
 
 <div class="form-group">
-    <label for="post_status">Post Status</label>
-    <input type="text" value="<?php echo $post_status; ?>" class="form-control" name="post_status">
+<select name="post_status" id="">
+  <option value='<?php echo $post_status; ?>'><?php echo $post_status; ?></option>
+
+  <?php if($post_status == 'Published') {
+    echo "<option value='draft'>Draft</option>";
+  } else {
+    echo "<option value='Published'>Published</option>";
+  }
+  ?>
+
+</select>
 </div>
+
+
 
  <div class="form-group">
     <label for="image">Post Image</label>
@@ -137,7 +151,7 @@ $update_post = mysqli_query($connection,$query);
 
 <div class="form-group">
     <label for="post_content">Post Content</label>
-    <textarea class="form-control" value="" name="post_content" id="" cols="30" rows="10"><?php echo $post_content ?>
+    <textarea class="form-control" value="" name="post_content" id="editor" cols="30" rows="10"><?php echo $post_content ?>
 </textarea>
 </div>
 

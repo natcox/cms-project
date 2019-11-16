@@ -49,8 +49,14 @@ echo 'Editing user<br><br>';
 include "includes/edit_user.php";
 break;
 
-case 'delete_';
-echo "nice";
+case 'useradded';
+echo "User Added<br><br>";
+include "includes/view_all_users.php";
+break;
+
+case 'userupdated';
+echo "User updated<br><br>";
+include "includes/view_all_users.php";
 break;
 
 default:

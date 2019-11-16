@@ -24,7 +24,8 @@ $query .= "VALUES('{$user_firstname}','{$user_lastname}','{$user_role}','{$user_
    $add_user_query =  mysqli_query($connection,$query);
 
 confirm($add_user_query);
-header ("Location: ../admin/users.php");
+
+header ("Location: ../admin/users.php?source=useradded");
 }
 ?>
 <form action ="" method="post" enctype="multipart/form-data">

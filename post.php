@@ -48,7 +48,7 @@ while($row = mysqli_fetch_assoc($select_all_posts_query)){
                 <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
                 <hr>
                 <p><?php echo $post_content; ?></p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+
 
                 <hr>
 
@@ -61,38 +61,35 @@ while($row = mysqli_fetch_assoc($select_all_posts_query)){
 <?php
 
 if(isset($_POST['create_comment']))
-
 {
   $post_id = $_GET['p_id'];
   $comment_author = $_POST['comment_author'];
   $comment_email = $_POST['comment_email'];
   $comment_content = $_POST['comment_content'];
 
-  $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date)";
+if(!empty($comment_author) && !empty($comment_email) && !empty(comment_content )){
 
-  $query .= "VALUES ($post_id, '{$comment_author}', '{$comment_email}', '{$comment_content}', 'Unapproved', now())";
+    $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date)";
 
-  $add_comment_query = mysqli_query($connection,$query);
+    $query .= "VALUES ($post_id, '{$comment_author}', '{$comment_email}', '{$comment_content}', 'Unapproved', now())";
 
-  if(!$add_comment_query)
-  {
-    echo 'QUERY FAILED' . mysqli_error($connection);
-  } else
-      {
-        echo "Comment submitted";
-      }
+    $add_comment_query = mysqli_query($connection,$query);
 
+    if(!$add_comment_query)
+    {
+      echo 'QUERY FAILED' . mysqli_error($connection);
+    } else
+        {
+          echo "Comment submitted";
+        }
+  } else {
 
+echo "<script>alert('All fields must be completed to submit a comment')</script>";
 
+  }
 }
 
-
-
-
-
-
  ?>
-
 
                 <!-- Comments Form -->
                 <div class="well">

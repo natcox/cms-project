@@ -1,6 +1,5 @@
 
 
-
 <?php
 if(isset($_POST['create_post'])){
 
@@ -25,8 +24,13 @@ $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date
 $query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}', now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_status}') ";
 
    $add_post_query =  mysqli_query($connection,$query);
-
+z
 confirm($add_post_query);
+
+$the_post_id = mysqli_insert_id($connection);
+
+echo "<p class='bg-success'>Post Added. <a href='../post.php?p_id={$the_post_id}'>View your post</a> or <a href='posts.php' >View all posts</a>";
+
 }
 ?>
 <form action ="" method="post" enctype="multipart/form-data">
@@ -64,8 +68,10 @@ confirm($add_post_query);
 </div>
 
 <div class="form-group">
-    <label for="post_status">Post Status</label>
-    <input type="text" class="form-control" name="post_status">
+<select name="post_status" id="">
+  <option value='Draft'>Draft</option>
+<option value='Published'>Published</option>
+</select>
 </div>
 
  <div class="form-group">
@@ -80,7 +86,7 @@ confirm($add_post_query);
 
 <div class="form-group">
     <label for="post_content">Post Content</label>
-    <textarea class="form-control" name="post_content" id="" cols="30" rows="10">
+    <textarea class="form-control" name="post_content" id="editor" cols="30" rows="10">
    </textarea>
 </div>
 
